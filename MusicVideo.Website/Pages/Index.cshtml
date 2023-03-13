@@ -1,0 +1,61 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">This is my favourite video of all times!</h1>
+    
+    <p class="buttonContainer"><button onclick="myMove()" id="firstButton">Move It!</button><button onclick="myMoveTWo()" id="secondButton">And Again!</button></p>
+    <div id="mySummary">
+        <div id="myAnimatedVideo">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/djV11Xbc914" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+        </div>
+    </div>
+
+    <script>
+        var id = null;
+        function myMove() {
+            var elem = document.getElementById("myAnimatedVideo");
+            var pos = 0;
+            clearInterval(id);
+            id = setInterval(frame, 10);
+            function frame() {
+                if (pos == 139) {
+                    clearInterval(id);
+                    document.getElementById("firstButton").style.display = "none";
+                    document.getElementById("secondButton").style.display = "block";
+                } else {
+                    pos++;
+                    elem.style.top = pos + 'px';
+                    elem.style.left = pos + 'px';
+                }
+            }
+        }
+
+        var secondid = null;
+        function myMoveTWo() {
+            var elem = document.getElementById("myAnimatedVideo");
+            var posTwo = 139;
+            clearInterval(secondid);
+            secondid = setInterval(frameTwo, 10);
+            function frameTwo() {
+                if (posTwo == 0) {
+                    clearInterval(secondid);
+                    document.getElementById("firstButton").style.display = "block";
+                    document.getElementById("secondButton").style.display = "none";
+                } else {
+                    posTwo--;
+                    elem.style.top = posTwo + 'px';
+                    elem.style.left = posTwo + 'px';
+                }
+            }
+        }
+    </script>
+
+
+
+
+</div>
